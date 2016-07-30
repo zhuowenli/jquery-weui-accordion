@@ -20,7 +20,7 @@ $('.weui_accordion_box').accordion({
     animate: true, // 开启动画效果
     duration: 300, // 动画时长
     onChange: function(event) {
-        console.log(event); // 'up' or 'down'
+        console.log(event); // 'open' or 'close'
     }
 });
 ```
