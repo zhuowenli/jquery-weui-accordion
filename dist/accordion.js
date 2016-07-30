@@ -22,7 +22,8 @@
 
         this.options = $.extend({
             animate: true,
-            duration: 500
+            duration: 500,
+            onChange: function() {}
         }, options);
 
         this.init();
@@ -34,22 +35,20 @@
             var $accordion = this.$accordion;
             var that = this;
 
-            // $accordion.find('.weui_accordion_content').slideUp()
-
             $accordion.delegate('.weui_accordion_title', EVENT_TAP, function() {
                 var $title = $(this);
                 var $content = $title.parent().find('.weui_accordion_content');
 
                 if ($title.hasClass('active')) {
                     $title.removeClass('active');
-                    that.down($content);
+                    that.close($content);
                 } else {
                     $title.addClass('active');
-                    that.up($content);
+                    that.open($content);
                 }
             });
         },
-        up: function($content) {
+        open: function($content) {
             var options = this.options;
 
             if (options.animate) {
@@ -62,8 +61,10 @@
                 $content.show();
                 $content.addClass('active');
             }
+
+            options.onChange('open');
         },
-        down: function($content) {
+        close: function($content) {
             var options = this.options;
 
             if (options.animate) {
@@ -76,6 +77,8 @@
                 $content.hide();
                 $content.removeClass('active');
             }
+
+            options.onChange('close');
         },
     }
 
