@@ -35,7 +35,8 @@
             var $accordion = this.$accordion;
             var that = this;
 
-            $accordion.delegate('.weui_accordion_title', EVENT_TAP, function() {
+            $accordion.find('.weui_accordion_title').unbind(EVENT_TAP);
+            $accordion.find('.weui_accordion_title').on(EVENT_TAP, function() {
                 var $title = $(this);
                 var $content = $title.parent().find('.weui_accordion_content');
 
